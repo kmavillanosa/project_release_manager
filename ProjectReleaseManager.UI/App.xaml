@@ -1,0 +1,36 @@
+﻿<Application x:Class="ProjectReleaseManager.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ProjectReleaseManager.UI">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <ImageBrush 
+                        Stretch="UniformToFill" AlignmentY="Center" Viewport="10,1,90,200" 
+                        ViewportUnits="Absolute"
+                        TileMode="FlipX"  ImageSource="/Images/HeaderBg.png" x:Key="HeaderBg"/>
+                    <local:Bootstrapper x:Key="bootstrapper"/>
+                </ResourceDictionary>
+                
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                        <!-- Accent and AppTheme setting -->
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="MaterialDesignShadow">#AA000000</Color>
+            <SolidColorBrush x:Key="MaterialDesignShadowBrush" Color="{StaticResource MaterialDesignShadow}"/>
+            <DropShadowEffect x:Key="z-depth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

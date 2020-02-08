@@ -1,0 +1,86 @@
+﻿<controls:MetroWindow x:Class="ProjectReleaseManager.UI.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectReleaseManager.UI.Views"
+        mc:Ignorable="d"
+        WindowTitleBrush="#1e272e"
+        GlowBrush="#0be881"
+                      UseLayoutRounding="True"
+        EnableDWMDropShadow="True"
+        BorderThickness="0"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:cal="http://www.caliburnproject.org"
+                      xmlns:customcontrols="clr-namespace:ProjectReleaseManager.UI.CustomControls"
+                      VisualTextRenderingMode="Grayscale"
+                      Title="Project Release Manager" Height="700" Width="1200">
+
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button>
+                Settings
+            </Button>
+        </controls:WindowCommands>
+
+    </controls:MetroWindow.RightWindowCommands>
+
+
+    <Grid>
+        
+        <customcontrols:ModalControl
+             IsModalOpen="{Binding IsModalOpen}">
+         
+            <customcontrols:ModalControl.ModalContent>
+                <Border Background="White" CornerRadius="30" Padding="0 0 0 10">
+                    <Grid Panel.ZIndex="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border >
+                            <Grid 
+                              Grid.Row="0"  Margin="0 0 0 20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock FontSize="20" Grid.Column="0"
+                                           Padding="10 10 0 0"
+                                      Text="{Binding ActiveModalView.Title}"/>
+                                <Button cal:Message.Attach="CloseModal"  
+                                    Grid.Column="1">Close</Button>
+
+                            </Grid>
+                        </Border>
+                  
+
+                        <ContentControl  Padding="20" Panel.ZIndex="0" 
+                                         Grid.Row="1" cal:View.Model="{Binding ActiveModalView}"/>
+                    </Grid>
+                </Border>
+            </customcontrols:ModalControl.ModalContent>
+
+           
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Background="{StaticResource HeaderBg}"  Grid.Row="0">
+                    <TextBlock Margin="20" 
+                               Foreground="WhiteSmoke"
+                               VerticalAlignment="Center" FontSize="30">Project Release Manager</TextBlock>
+                </Border>
+                <ContentControl  Panel.ZIndex="0"
+                         Grid.Row="1" 
+                         cal:View.Model="{Binding ActiveModule}"/>
+            </Grid>
+        </customcontrols:ModalControl>
+
+
+    </Grid>
+</controls:MetroWindow>

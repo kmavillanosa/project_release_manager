@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="ProjectReleaseManager.UI.CustomControls.ModalControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectReleaseManager.UI.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type local:ModalControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:ModalControl}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.RowSpan="3" 
+                                    Grid.Column="0" Grid.ColumnSpan="3" 
+                                    Panel.ZIndex="1">
+
+                                <ContentPresenter />
+                            </Border>
+                            <Border Grid.Row="0" Grid.RowSpan="3" 
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                    Panel.ZIndex="2" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown">
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="Black" 
+                                                         Opacity="0.75"/>
+                                    </Rectangle.Fill>
+                                    <Rectangle.Style>
+                                        <Style TargetType="{x:Type Rectangle}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsModalOpen, 
+                                                                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Value="true">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Rectangle.Style>
+                                </Rectangle>
+                            </Border>
+                            <Border x:Name="modalContent" Grid.Column="1" Grid.Row="1" CornerRadius="3"
+                                    Panel.ZIndex="3"
+                                    Effect="{StaticResource z-depth5}"
+                                    Background="#fff"
+                                    local:EffectExtension.FadeUpDown="{Binding IsModalOpen, 
+                                            RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    Margin="0 0 0 0">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="0" ScaleY="0"/>
+                                </Border.RenderTransform>
+                                <ContentControl Content="{Binding ModalContent, 
+                                            RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+</UserControl>
